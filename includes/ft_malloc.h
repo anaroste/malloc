@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:48:18 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 14:18:01 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:42:40 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MALLOC_H
 
 # include <sys/mman.h>
+# include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -40,6 +41,7 @@ typedef struct			s_manager
 }						t_manager;
 
 t_manager				g_manager;
+static pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void					*malloc(size_t size);
 void					free(void *ptr);

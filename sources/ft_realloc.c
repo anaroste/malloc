@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:06:32 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 11:52:22 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:42:59 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int		be_or_not_to_be(void *ptr, size_t size)
 	return (1);
 }
 
-void			*realloc(void *ptr, size_t size)
+static void		*ft_realloc(void *ptr, size_t size)
 {
 	int		nb;
 
@@ -90,4 +90,14 @@ void			*realloc(void *ptr, size_t size)
 	if (align16(size) > SMALL_MAX)
 		return (ft_combo_mmf(ptr, align16(size)));
 	return (ft_found_adress(ptr, align16(size)));
+}
+
+void			*realloc(void *ptr, size_t size)
+{
+	void		*ret;
+
+	pthread_mutex_lock(&g_mutex);
+	ret = ft_realloc(ptr, size);
+	pthread_mutex_unlock(&g_mutex);
+	return (ret);
 }

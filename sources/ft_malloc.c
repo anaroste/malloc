@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:27:09 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 10:05:49 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:42:55 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			*ft_new_block(t_block *block, int size, size_t size_max)
 	return ((void *)tmp + SIZE_B);
 }
 
-void			*malloc(size_t size)
+static void		*ft_malloc(size_t size)
 {
 	t_block		*ret;
 
@@ -94,5 +94,15 @@ void			*malloc(size_t size)
 				return (NULL);
 		ret = ft_new_block(g_manager.next_large, size, size);
 	}
+	return (ret);
+}
+
+void			*malloc(size_t size)
+{
+	void		*ret;
+
+	pthread_mutex_lock(&g_mutex);
+	ret = ft_malloc(size);
+	pthread_mutex_unlock(&g_mutex);
 	return (ret);
 }

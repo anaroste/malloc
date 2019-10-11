@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:04:45 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 15:23:01 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:56:53 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,30 @@
 
 static void		ft_defrag(t_block *block)
 {
-	if (block->next != NULL && block->next->free == 1
-		&& block->next->npage == 0)
+	// ft_putstr("A\n");
+	if (block->next != NULL && block->next->free == 1 && block->next->npage == 0)
 	{
+	// ft_putstr("B\n");
 		block->size += block->next->size + sizeof(t_block);
 		block->next = block->next->next;
-		if (block->next)
+		if (block->next != NULL)
 			block->next->prev = block;
 	}
-	if (block->prev != NULL && block->prev->free == 1 && block->npage == 0)
-		block = block->prev;
-	if (block->next != NULL && block->next->free == 1
-		&& block->next->npage == 0)
-	{
-		block->size += block->next->size + sizeof(t_block);
-		block->next = block->next->next;
-		if (block->next)
-			block->next->prev = block;
-	}
+	// ft_putstr("C\n");
+	// printf("block->prev = %p\n", block->prev);
+	// if (block->prev != NULL && block->prev->free == 1 && block->npage == 0)
+	// 	block = block->prev;
+	// // ft_putstr("D\n");
+	// if (block->next != NULL && block->next->free == 1
+	// 	&& block->next->npage == 0)
+	// {
+	// // ft_putstr("E\n");
+	// 	block->size += block->next->size + sizeof(t_block);
+	// 	block->next = block->next->next;
+	// 	if (block->next)
+	// 		block->next->prev = block;
+	// }
+	// // ft_putstr("F\n");
 }
 
 int				liste_check(void *ptr, t_block *block, size_t size, int module)
@@ -70,7 +76,7 @@ size_t			align16(size_t x)
 	return ((x - 1) / 16 * 16 + 16);
 }
 
-void			free(void *ptr)
+static void		ft_free(void *ptr)
 {
 	if (ptr == NULL)
 	{
@@ -82,4 +88,11 @@ void			free(void *ptr)
 			{
 				return ;
 			}
+}
+
+void			free(void *ptr)
+{
+	pthread_mutex_lock(&g_mutex);
+	ft_free(ptr);
+	pthread_mutex_unlock(&g_mutex);
 }
