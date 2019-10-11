@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:48:18 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 11:55:25 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:18:01 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ size_t					find_size(void *src, t_block *tmp);
 void					*find_adress(void *ptr, size_t size, t_block *tmp);
 void					*ft_extend(t_block *block, size_t size);
 void					*ft_combo_mmf(void *src, size_t size);
+void					*calloc(size_t nmemb, size_t size);
+size_t					malloc_good_size(size_t size);
+size_t					malloc_size(void *ptr);
+void					*reallocf(void *ptr, size_t size);
 
 #endif

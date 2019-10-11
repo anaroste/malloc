@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:38:57 by anaroste          #+#    #+#             */
-/*   Updated: 2019/09/24 15:30:00 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 12:30:03 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char		*ft_custom_itoa_base(unsigned long long nbr, int base, char c, char *str);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_c(const char *s, char c);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
+void		*ft_memset(void *b, int c, size_t len);
 
 #endif

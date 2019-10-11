@@ -24,6 +24,7 @@ SRC = 						\
 	ft_putchar.c			\
 	ft_putendl.c			\
 	ft_custom_itoa_base.c	\
+	ft_memset.c				\
 
 OBJ = $(SRC:.c=.o)
 

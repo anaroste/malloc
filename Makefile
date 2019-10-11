@@ -14,11 +14,15 @@ HEADERS =	-I ./includes/ft_malloc.h
 
 LINK =		libft_malloc.so
 
-SRC_NAME =	ft_malloc.c			\
-			ft_realloc.c		\
-			ft_realloc_bis.c	\
-			ft_free.c			\
-			show_alloc_mem.c	\
+SRC_NAME =	ft_malloc.c				\
+			ft_realloc.c			\
+			ft_calloc.c				\
+			ft_realloc_bis.c		\
+			ft_free.c				\
+			show_alloc_mem.c		\
+			ft_malloc_good_size.c	\
+			ft_malloc_size.c		\
+			ft_reallocf.c			\
 
 SRC = $(addprefix sources/, $(SRC_NAME))
 
