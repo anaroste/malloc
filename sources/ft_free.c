@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 14:04:45 by anaroste          #+#    #+#             */
-/*   Updated: 2019/10/11 15:17:10 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:23:01 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 static void		ft_defrag(t_block *block)
 {
-	if (block->next != NULL && block->next->free == 1 && block->next->npage == 0)
+	if (block->next != NULL && block->next->free == 1
+		&& block->next->npage == 0)
 	{
 		block->size += block->next->size + sizeof(t_block);
 		block->next = block->next->next;
@@ -24,7 +25,8 @@ static void		ft_defrag(t_block *block)
 	}
 	if (block->prev != NULL && block->prev->free == 1 && block->npage == 0)
 		block = block->prev;
-	if (block->next != NULL && block->next->free == 1 && block->next->npage == 0)
+	if (block->next != NULL && block->next->free == 1
+		&& block->next->npage == 0)
 	{
 		block->size += block->next->size + sizeof(t_block);
 		block->next = block->next->next;
@@ -48,10 +50,12 @@ int				liste_check(void *ptr, t_block *block, size_t size, int module)
 				ft_defrag(tmp);
 			}
 			else
+			{
 				if (tmp->size == size)
 				{
 					return (2);
 				}
+			}
 			return (1);
 		}
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: anaroste <anaroste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:34:10 by anaroste          #+#    #+#             */
-/*   Updated: 2019/09/24 15:39:02 by anaroste         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:21:17 by anaroste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int		ft_count(unsigned long long nbr, int base)
 	return (count);
 }
 
-char			*ft_custom_itoa_base(unsigned long long nbr, int base, char c, char *str)
+char			*ft_custom_itoa_base(unsigned long long nbr, int base,
+					char c, char *str)
 {
 	int		count;
 	char	*tab;
@@ -35,8 +36,6 @@ char			*ft_custom_itoa_base(unsigned long long nbr, int base, char c, char *str)
 		tab = "0123456789ABCDEF";
 	else
 		tab = "0123456789abcdef";
-	// if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
-	// 	return (NULL);
 	str[count] = '\0';
 	while (nbr != 0)
 	{
